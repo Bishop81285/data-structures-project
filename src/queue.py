@@ -1,13 +1,14 @@
 class Node:
     """Класс для узла очереди"""
 
-    def __init__(self, data, next_node):
+    def __init__(self, data, next_node=None):
         """
         Конструктор класса Node
 
         :param data: данные, которые будут храниться в узле
         """
-        pass
+        self.data = data
+        self.next_node = next_node
 
 
 class Queue:
@@ -15,7 +16,8 @@ class Queue:
 
     def __init__(self):
         """Конструктор класса Queue"""
-        pass
+        self.head = None
+        self.tail = None
 
     def enqueue(self, data):
         """
@@ -23,7 +25,13 @@ class Queue:
 
         :param data: данные, которые будут добавлены в очередь
         """
-        pass
+        new_node = Node(data)
+
+        if self.is_empty():
+            self.head = self.tail = new_node
+        else:
+            self.tail.next_node = new_node
+            self.tail = new_node
 
     def dequeue(self):
         """
@@ -35,4 +43,19 @@ class Queue:
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
-        pass
+        tmp = self.head
+        print_list = []
+
+        while tmp:
+            print_list.append(str(tmp.data))
+            tmp = tmp.next_node
+
+        return "\n".join(print_list)
+
+    def is_empty(self):
+        """
+        Метод проверяющий пустоту очереди
+
+        :return: True если очередь пуста, False в противном случае
+        """
+        return self.head is None

@@ -36,6 +36,14 @@ class StackTest(unittest.TestCase):
 
         self.assertFalse(stack.is_empty())
 
+    def test_str(self):
+        stack = Stack()
+        stack.push(10)
+        stack.push(20)
+        stack.push(30)
+
+        self.assertEqual(str(stack), '30\n20\n10')
+
 
 if __name__ == '__main__':
     unittest.main()

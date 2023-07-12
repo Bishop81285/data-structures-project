@@ -9,6 +9,7 @@ packages = [{include = "data_structures_project"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 coverage = "^7.2.7"
+flake8 = "^6.0.0"
 
 
 [build-system]
