@@ -35,3 +35,14 @@ class QueueTest(unittest.TestCase):
         queue.enqueue(30)
 
         self.assertEqual(str(queue), '10\n20\n30')
+
+    def test_dequeue_non_empty_queue(self):
+        queue = Queue()
+        queue.enqueue(1)
+        queue.enqueue(2)
+        queue.enqueue(3)
+
+        self.assertEqual(queue.dequeue(), 1)
+        self.assertEqual(queue.dequeue(), 2)
+        self.assertEqual(queue.dequeue(), 3)
+        self.assertIsNone(queue.dequeue())
