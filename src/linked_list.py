@@ -65,3 +65,46 @@ class LinkedList:
         :return: True если список пуст, False в противном случае
         """
         return self.head is None
+
+    def to_list(self) -> list:
+        """
+        Метод, который возвращает список с данными, содержащимися в односвязном списке LinkedList
+
+        :return: список с данными из узлов списка
+        """
+        data_list = []
+
+        node = self.head
+
+        while node:
+            data_list.append(node.data)
+
+            node = node.next_node
+
+        return data_list
+
+    def get_data_by_id(self, _id):
+        """
+        Метод, который возвращает первый найденный в LinkedList словарь с ключом 'id',
+        значение которого равно переданному в метод значению.
+
+        :param _id: значение ключа 'id', которое ищем в словарях узлов списка
+        :return: словарь с соответствующим значением ключа 'id' или None, если такого нет
+        """
+
+        node = self.head
+
+        while node:
+            try:
+                if not isinstance(node.data, dict):
+                    raise TypeError
+                elif 'id' not in node.data:
+                    raise TypeError
+                elif node.data['id'] == _id:
+                    return node.data
+            except TypeError:
+                print(f"Данные ({node.data}) не являются словарем или в словаре нет id.")
+            finally:
+                node = node.next_node
+
+        return None
